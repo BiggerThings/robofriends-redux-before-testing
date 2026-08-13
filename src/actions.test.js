@@ -6,13 +6,14 @@ import {
     REQUEST_ROBOTS_FAILED
 } from './constants'
 
-import apiCall from './api/api';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import { apiCall } from './api/api';
+import configureStore from 'redux-mock-store';
+import { thunk } from 'redux-thunk';
 
-const mockStore = configureMockStore([thunk]);
+const mockStore = configureStore([thunk]);
 
 describe('actions', () => {
+    const store = mockStore();
     it('should create an action to search robots', () => {
         const text = 'woo';
 
@@ -24,7 +25,7 @@ describe('actions', () => {
     })
 
     it('should create actions to request robots (API)', () => {
-        const store = mockStore;
+
         store.dispatch(actions.requestRobots());
         const action = store.getActions();
         const expectedAction = {
